@@ -1,0 +1,2 @@
+rootProject.name = 'CoinInsight'
+include 'UserManagement'
