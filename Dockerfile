@@ -1,14 +1,14 @@
-# Use the official OpenJDK image as a base image
-FROM openjdk:17-jdk-slim
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:17-jdk-alpine
 
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the built JAR file into the container
-COPY build/libs/UserService-0.0.1-SNAPSHOT.jar app.jar
+# Copy the executable JAR file to the working directory
+COPY UserManagement/target/UserManagement-1.0-SNAPSHOT.jar /app/user-service.jar
 
-# Expose the port that the application will run on
-EXPOSE 7575
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
 
-# Define the command to run the application
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+# Run the JAR file
+ENTRYPOINT ["java", "-jar", "user-service.jar"]

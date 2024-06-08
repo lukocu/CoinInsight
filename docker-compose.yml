@@ -5,7 +5,7 @@ services:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER: user
+      POSTGRES_USER: username
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
     volumes:
@@ -18,7 +18,7 @@ services:
 
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
@@ -32,25 +32,17 @@ services:
     restart: unless-stopped
 
   user-service:
-    build:
-      context: ./UserManagement
-    ports:
-      - "8055:8055"
+    image: postgres:latest
+    volumes:
+      - ./data:/var/lib/postgresql/data
     environment:
-      SPRING_PROFILES_ACTIVE: docker
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/coin_db_user_service
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
-    networks:
-      - postgres
-    restart: unless-stopped
-
-
-networks:
-  postgres:
-    driver: bridge
-
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: username
+      POSTGRES_DB: user-service
 
 volumes:
   postgres:
   pgadmin:
+
+networks:
+  postgres:

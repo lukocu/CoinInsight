@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: user-service
+  datasource:
+    password: password
+    url: jdbc:postgresql://postgres:5432/user-service
+    username: username
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+userManagementJwt:
+  app:
+    jwtSecret: jwttokenapplicationdockercoininsgihtloginautorization
+    jwtExpirationMs: 3600000
