@@ -1,15 +1,13 @@
 server:
   port: 8080
 spring:
-  application:
-    name: user-service
   datasource:
-    password: password
     url: jdbc:postgresql://localhost:5432/user-service
-    username: username
+    username: postgres
+    password: password
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -18,5 +16,10 @@ spring:
 
 userManagementJwt:
   app:
-    jwtSecret: jwttokenapplicationdockercoininsgihtloginautorization
+    jwtSecret: Y29pbkFwcEpXVFNlY3JldEtleUZvckNBVEdU
     jwtExpirationMs: 3600000
+
+userManagement:
+  openapi:
+    dev-url: http://localhost:8080
+    prod-url: http://localhost:8080

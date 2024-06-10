@@ -4,8 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class },
-        scanBasePackages = {"com.userservice.repository"})
+@SpringBootApplication()
 public class UserManagementApplication {
 
     public static void main(String[] args) {
